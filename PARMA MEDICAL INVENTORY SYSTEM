@@ -104,26 +104,26 @@ def main():
         if choice == '1':
             item_id = int(input("Enter Item ID: "))
             name = input("Enter Item Name: ")
-            price = float(input("Enter Item Price: "))
+            price = float(input("Enter Item Price: " + "Php "))
             quantity = int(input("Enter Item Quantity: "))
-            inventory_system.add_medical_item(item_id, name, price, quantity)
+            MedicalInventorySystem.add_medical_item(item_id, name, price, quantity)
         elif choice == '2':
             item_id = int(input("Enter Item ID to update: "))
             price = float(input("Enter New Price: "))
             quantity = int(input("Enter New Quantity: "))
-            inventory_system.update_medical_item(item_id, price, quantity)
+            MedicalInventorySystem.update_medical_item(item_id, price, quantity)
         elif choice == '3':
-            inventory_system.display_medical_items()
+            MedicalInventorySystem.display_medical_items()
         elif choice == '4':
             item_id = int(input("Enter Item ID to reorder: "))
             order_quantity = int(input("Enter Quantity to reorder: "))
-            inventory_system.reorder_item(item_id, order_quantity)
+            MedicalInventorySystem.reorder_item(item_id, order_quantity)
         elif choice == '5':
             item_id = int(input("Enter Item ID to remove: "))
-            inventory_system.remove_item(item_id)
+            MedicalInventorySystem.remove_item(item_id)
         elif choice == '6':
             item_id = int(input("Enter Item ID to check inventory: "))
-            quantity = inventory_system.check_inventory(item_id)
+            quantity = MedicalInventorySystem.check_inventory(item_id)
             if quantity is not None:
                 print(f"Inventory of Item {item_id}: {quantity}")
             else:
