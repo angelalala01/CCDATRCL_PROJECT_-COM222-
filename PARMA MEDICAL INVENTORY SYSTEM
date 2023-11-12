@@ -70,7 +70,7 @@ class MedicalInventorySystem:
         return None
 
 # User management
-users = [User("admin1", "Ideas123!"), User("admin2", "Ideas123!!!")]
+users = [User("admin1", "123"), User("admin2", "345")]
 
 def login():
     username = input("Enter username: ")
