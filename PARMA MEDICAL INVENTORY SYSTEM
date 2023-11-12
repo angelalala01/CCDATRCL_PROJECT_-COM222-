@@ -40,14 +40,6 @@ class MedicalInventorySystem:
             print(f"Item ID: {current.item_id}, Name: {current.name}, Price: {current.price}, Quantity: {current.quantity}")
             current = current.next
 
-    def reorder_item(self, item_id, order_quantity):
-        current = self.head
-        while current:
-            if current.item_id == item_id:
-                current.quantity += order_quantity
-                break
-            current = current.next
-
     def remove_item(self, item_id):
         current = self.head
         prev = None
@@ -83,6 +75,8 @@ def login():
     return None
 
 def main():
+    inventory_system = MedicalInventorySystem()  # create an instance
+
     logged_user = None
 
     while True:
@@ -95,10 +89,9 @@ def main():
         print("1. Add Medical Item")
         print("2. Update Medical Item")
         print("3. Display Medical Items")
-        print("4. Reorder Item")
-        print("5. Remove Item")
-        print("6. Check Inventory")
-        print("7. Logout")
+        print("4. Remove Item")
+        print("5. Check Inventory")
+        print("6. Logout")
 
         choice = input("Enter your choice: ")
         if choice == '1':
@@ -106,29 +99,25 @@ def main():
             name = input("Enter Item Name: ")
             price = float(input("Enter Item Price: " + "Php "))
             quantity = int(input("Enter Item Quantity: "))
-            MedicalInventorySystem.add_medical_item(item_id, name, price, quantity)
+            inventory_system.add_medical_item(item_id, name, price, quantity)
         elif choice == '2':
             item_id = int(input("Enter Item ID to update: "))
             price = float(input("Enter New Price: "))
             quantity = int(input("Enter New Quantity: "))
-            MedicalInventorySystem.update_medical_item(item_id, price, quantity)
+            inventory_system.update_medical_item(item_id, price, quantity)
         elif choice == '3':
-            MedicalInventorySystem.display_medical_items()
+            inventory_system.display_medical_items()
         elif choice == '4':
-            item_id = int(input("Enter Item ID to reorder: "))
-            order_quantity = int(input("Enter Quantity to reorder: "))
-            MedicalInventorySystem.reorder_item(item_id, order_quantity)
-        elif choice == '5':
             item_id = int(input("Enter Item ID to remove: "))
-            MedicalInventorySystem.remove_item(item_id)
-        elif choice == '6':
+            inventory_system.remove_item(item_id)
+        elif choice == '5':
             item_id = int(input("Enter Item ID to check inventory: "))
-            quantity = MedicalInventorySystem.check_inventory(item_id)
+            quantity = inventory_system.check_inventory(item_id)
             if quantity is not None:
                 print(f"Inventory of Item {item_id}: {quantity}")
             else:
                 print(f"Item {item_id} not found in inventory.")
-        elif choice == '7':
+        elif choice == '6':
             logged_user = None
         else:
             print("Invalid choice. Please try again.")
